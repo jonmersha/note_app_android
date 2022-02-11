@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.besheger.note_and.ui.home.HomeFragment"
+        android:name="com.besheger.note.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/new_note_fragment"
-        android:name="com.besheger.note_and.ui.new_note.NewNoteFragment"
+        android:name="com.besheger.note.ui.new_note.NewNoteFragment"
         android:label="new_note_fragment"
         tools:layout="@layout/new_note_fragment" />
     <fragment
         android:id="@+id/note_detail"
-        android:name="com.besheger.note_and.NoteDetail"
+        android:name="com.besheger.note.NoteDetail"
         android:label="note_detail_fragment"
         tools:layout="@layout/note_detail_fragment" />
 
