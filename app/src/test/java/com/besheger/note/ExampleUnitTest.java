@@ -1,4 +1,4 @@
-package com.besheger.note_and;
+package com.besheger.note;
 
 import org.junit.Test;
 
