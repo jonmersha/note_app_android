@@ -1,19 +1,35 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
+    signingConfigs {
+        debug {
+            storePassword 'Yohannes.1'
+            keyAlias 'key0'
+            keyPassword 'Yohannes.1'
+            storeFile file('/Users/yohannesm/note_key')
+        }
+        release {
+        storeFile file('/Users/yohannesm/note_key')
+            storePassword 'Yohannes.1'
+            keyAlias 'key0'
+            keyPassword 'Yohannes.1'
+        }
+    }
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
 
     defaultConfig {
-        applicationId "com.besheger.note_and"
+        applicationId 'com.besheger.note'
         minSdkVersion 21
-        targetSdkVersion 30
+        targetSdkVersion 31
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        signingConfig signingConfigs.release
     }
 
     buildTypes {
@@ -33,10 +49,11 @@ android {
 
 dependencies {
 
-    implementation 'androidx.room:room-runtime:2.3.0'
-    annotationProcessor 'androidx.room:room-compiler:2.3.0'
+    implementation 'androidx.room:room-runtime:2.4.1'
+    implementation 'com.google.firebase:firebase-analytics:20.0.2'
+    annotationProcessor 'androidx.room:room-compiler:2.4.1'
 
-    def nav_version = "2.3.5"
+    def nav_version = '2.4.1'
     // Java language implementation
     implementation "androidx.navigation:navigation-fragment:$nav_version"
     implementation "androidx.navigation:navigation-ui:$nav_version"
@@ -49,22 +66,22 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     // Jetpack Compose Integration
-    implementation "androidx.navigation:navigation-compose:2.4.0-alpha04"
+    implementation 'androidx.navigation:navigation-compose:2.5.0-alpha02'
 
 //Retrofit
-    implementation 'com.google.code.gson:gson:2.8.7'
+    implementation 'com.google.code.gson:gson:2.8.9'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     
 
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-fragment:2.3.5'
-    implementation 'androidx.navigation:navigation-ui:2.3.5'
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment:2.4.1'
+    implementation 'androidx.navigation:navigation-ui:2.4.1'
     implementation 'jp.wasabeef:richeditor-android:2.0.0'
     implementation 'com.github.duanhong169:colorpicker:1.1.6'
 

@@ -16,7 +16,7 @@ import androidx.navigation.fragment.FragmentNavigator;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.besheger.note_and.R;
+import com.besheger.note.R;
 
 import com.besheger.note.model.UserNote;
 import com.besheger.note.utils.NoteDetailUsers;

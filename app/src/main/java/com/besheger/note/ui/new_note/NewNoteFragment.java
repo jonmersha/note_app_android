@@ -14,8 +14,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.besheger.note_and.R;
-import com.besheger.note_and.databinding.NewNoteFragmentBinding;
+import com.besheger.note.R;
+import com.besheger.note.databinding.NewNoteFragmentBinding;
 import com.thebluealliance.spectrum.SpectrumDialog;
 
 import jp.wasabeef.richeditor.RichEditor;

@@ -11,7 +11,7 @@ import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
-import com.besheger.note_and.databinding.ActivityMainBinding;
+import com.besheger.note.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 

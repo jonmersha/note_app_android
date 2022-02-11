@@ -21,8 +21,8 @@ import com.besheger.note.model.NoteResponse;
 import com.besheger.note.model.UserNote;
 import com.besheger.note.ui.new_note.NewNoteViewModel;
 import com.besheger.note.utils.NoteDetailUsers;
-import com.besheger.note_and.databinding.NewNoteFragmentBinding;
-import com.besheger.note_and.databinding.NoteDetailFragmentBinding;
+import com.besheger.note.databinding.NewNoteFragmentBinding;
+import com.besheger.note.databinding.NoteDetailFragmentBinding;
 
 import jp.wasabeef.richeditor.RichEditor;
 import top.defaults.colorpicker.ColorPickerPopup;

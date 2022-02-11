@@ -12,8 +12,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.besheger.note_and.R;
-import com.besheger.note_and.databinding.FragmentNotificationsBinding;
+import com.besheger.note.R;
+import com.besheger.note.databinding.FragmentNotificationsBinding;
 
 public class NotificationsFragment extends Fragment {
 

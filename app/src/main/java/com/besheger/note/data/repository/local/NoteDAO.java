@@ -10,17 +10,17 @@ import com.besheger.note.model.UserNote;
 
 @Dao
 public interface NoteDAO {
-    @Insert
-    void insertNote(UserNote userNote);
-
-    @Insert
-    void insertUser(User user);
-
-    @Insert
-    void insertSubject(Subject subject);
-
-    @Insert
-    void insertCategory(NoteCat category);
+//    @Insert
+//    void insertNote(UserNote userNote);
+//
+//    @Insert
+//    void insertUser(User user);
+//
+//    @Insert
+//    void insertSubject(Subject subject);
+//
+//    @Insert
+//    void insertCategory(NoteCat category);
 
 
 

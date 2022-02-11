@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.besheger.note.data.view_model.NoteViewModel;
 import com.besheger.note.ui.adapter.NoteAdapter;
-import com.besheger.note_and.R;
-import com.besheger.note_and.databinding.FragmentHomeBinding;
+import com.besheger.note.R;
+import com.besheger.note.databinding.FragmentHomeBinding;
 import com.besheger.note.model.UserNote;
 
 import java.util.List;
