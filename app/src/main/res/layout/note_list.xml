@@ -7,7 +7,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp"
     android:layout_marginTop="5dp"
-   app:cardBackgroundColor="#EAD1AC"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+   app:cardBackgroundColor="#9CA2A6"
     android:layout_marginHorizontal="5dp"
     android:onClick="clickEvenet"
     >
@@ -15,17 +17,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingHorizontal="10dp"
             >
             <jp.wasabeef.richeditor.RichEditor
                 android:id="@+id/title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="#4CAF50"
                 />
             <TextView
                 android:id="@+id/detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="#D3CFCC"
+                android:textSize="20dp"
+                android:textAlignment="gravity"
                 />
 
         </LinearLayout>

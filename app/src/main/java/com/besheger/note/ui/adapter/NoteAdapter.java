@@ -40,8 +40,14 @@ private List<UserNote> noteList;
     @Override
     public void onBindViewHolder(@NonNull @NotNull NoteAdapter.ViewHolder holder, int position) {
         holder.note=noteList.get(position);
-        holder.title.setHtml("<h3>"+noteList.get(position).getNoteTitle()+"</h3>");
-        holder.detail.setText(holder.note.getNoteBody().replaceAll("\\<.*?\\>", "").substring(0,60)+"  .   .  .  . \n Tap for More");
+        holder.title.setHtml("<h2>"+noteList.get(position).getNoteTitle()+"</h2>");
+        try{
+            holder.detail.setText(holder.note.getNoteBody().replaceAll("\\<.*?\\>", "").substring(0,90)+"  .   .  .  . \n ======<More. . . . Click>=======");
+
+        }catch (Exception e){
+            holder.detail.setText(holder.note.getNoteBody().replaceAll("\\<.*?\\>", "")+"  .   .  .  . \n ======<More. . . .Click >=======");
+
+        }
 
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override

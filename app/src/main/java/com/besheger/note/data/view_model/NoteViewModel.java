@@ -92,7 +92,6 @@ public class NoteViewModel extends AndroidViewModel {
         noteEndPoint.updateNote(note).enqueue(new Callback<NoteResponse>() {
             @Override
             public void onResponse(Call<NoteResponse> call, Response<NoteResponse> response) {
-
                 noteResponse.setValue(response.body());
             }
 
@@ -111,20 +110,21 @@ public class NoteViewModel extends AndroidViewModel {
         note.addProperty("note_cat",userNote.getNoteCat());
         note.addProperty("note_type",userNote.getNoteType());
         note.addProperty("user_id",userNote.getNoteId());
+
         note.addProperty("note_subject",userNote.getNoteSubject());
         note.addProperty("note_section",userNote.getNoteSection());
         note.addProperty("note_title",userNote.getNoteTitle());
         note.addProperty("note_body",userNote.getNoteBody());
         note.addProperty("date_created",userNote.getDateCreated());
-        note.addProperty("edit_date",  userNote.getEditDate());
-        note.addProperty("edit_count",userNote.getEditCount()+1);
+        //note.addProperty("edit_date",  userNote.getEditDate());
+       // note.addProperty("edit_count",userNote.getEditCount()+1);
+
         NoteEndPoint noteEndPoint=retrofit.create(NoteEndPoint.class);
         noteEndPoint.newNote(note).enqueue(new Callback<NoteResponse>() {
             @Override
             public void onResponse(Call<NoteResponse> call, Response<NoteResponse> response) {
                 noteResponse.setValue(response.body());
             }
-
             @Override
             public void onFailure(Call<NoteResponse> call, Throwable t) {
 
