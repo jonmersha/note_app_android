@@ -12,7 +12,9 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.besheger.note.data.repository.local.Note;
 import com.besheger.note.data.view_model.NoteViewModel;
+import com.besheger.note.data.view_model.NoteViewModelLocal;
 import com.besheger.note.ui.adapter.NoteAdapter;
 import com.besheger.note.R;
 import com.besheger.note.databinding.FragmentHomeBinding;
@@ -26,7 +28,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView recyclerView;
     protected RecyclerView.LayoutManager layoutManager;
 
-    private NoteViewModel noteViewModel;
+    private NoteViewModelLocal noteViewModel;
 
     NoteAdapter noteAdapter;
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -36,12 +38,12 @@ public class HomeFragment extends Fragment {
         layoutManager = new LinearLayoutManager(getActivity());
         noteViewModel=new ViewModelProvider
                 .AndroidViewModelFactory(getActivity().getApplication())
-                .create(NoteViewModel.class);
+                .create(NoteViewModelLocal.class);
 
-        noteViewModel.getUserNote().observe(getActivity(), new Observer<List<UserNote>>() {
+        noteViewModel.getAllNote().observe(getActivity(), new Observer<List<Note>>() {
             @Override
-            public void onChanged(List<UserNote> userNotes) {
-                noteAdapter=new NoteAdapter(userNotes);
+            public void onChanged(List<Note> Notes) {
+                noteAdapter=new NoteAdapter(Notes);
                 recyclerView.setAdapter(noteAdapter);
                 recyclerView.setLayoutManager(layoutManager);
             }

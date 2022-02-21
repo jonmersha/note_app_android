@@ -1,28 +1,17 @@
 package com.besheger.note.data.repository.local;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
+import androidx.room.Query;
 
-import com.besheger.note.model.NoteCat;
-import com.besheger.note.model.Subject;
-import com.besheger.note.model.User;
-import com.besheger.note.model.UserNote;
+import java.util.List;
 
 @Dao
 public interface NoteDAO {
-//    @Insert
-//    void insertNote(UserNote userNote);
-//
-//    @Insert
-//    void insertUser(User user);
-//
-//    @Insert
-//    void insertSubject(Subject subject);
-//
-//    @Insert
-//    void insertCategory(NoteCat category);
+    @Insert
+    void insertNote(Note note);
 
-
-
-
+    @Query("SELECT * FROM main_note")
+    LiveData<List<Note>> geAllNote();
 }

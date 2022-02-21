@@ -3,12 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.new_note.NewNoteFragment">
+    tools:context=".ui.new_note.NewNoteFragment"
+    android:background="@color/purple_200"
+    >
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/note_list"
         android:layout_width="match_parent"
         tools:listitem="@layout/note_list"
-        android:layout_height="match_parent"/>
 
+        android:layout_marginHorizontal="10dp"
+        android:layout_height="match_parent"/>
 
 </FrameLayout>

@@ -2,10 +2,10 @@ package com.besheger.note.data.view_model;
 
 import android.app.Application;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.MutableLiveData;
 
+import com.besheger.note.data.repository.local.Note;
 import com.besheger.note.data.repository.local.NoteDAO;
 import com.besheger.note.data.repository.remot.NoteEndPoint;
 import com.besheger.note.NoteApp;
@@ -74,18 +74,18 @@ public class NoteViewModel extends AndroidViewModel {
         return userNote;
     }
 
-    public void updateNote(UserNote userNote) {
+    public void updateNote(Note userNote) {
         JsonObject note = new JsonObject();
-        note.addProperty("note_id",userNote.getNoteId());
-        note.addProperty("note_cat",userNote.getNoteCat());
-        note.addProperty("note_type",userNote.getNoteType());
-        note.addProperty("user_id",userNote.getNoteId());
-        note.addProperty("note_subject",userNote.getNoteSubject());
-        note.addProperty("note_section",userNote.getNoteSection());
-        note.addProperty("note_title",userNote.getNoteTitle());
-        note.addProperty("note_body",userNote.getNoteBody());
-        note.addProperty("date_created",userNote.getDateCreated());
-        //note.addProperty("edit_date",  userNote.getEditDate());
+//        note.addProperty("note_id",userNote.getNoteId());
+//        note.addProperty("note_cat",userNote.getNoteCat());
+//        note.addProperty("note_type",userNote.getNoteType());
+//        note.addProperty("user_id",userNote.getNoteId());
+//        note.addProperty("note_subject",userNote.getNoteSubject());
+//        note.addProperty("note_section",userNote.getNoteSection());
+//        note.addProperty("note_title",userNote.getNoteTitle());
+//        note.addProperty("note_body",userNote.getNoteBody());
+//        note.addProperty("date_created",userNote.getDateCreated());
+//        //note.addProperty("edit_date",  userNote.getEditDate());
        // note.addProperty("edit_count",userNote.getEditCount()+1);
 
         NoteEndPoint noteEndPoint=retrofit.create(NoteEndPoint.class);
@@ -104,13 +104,14 @@ public class NoteViewModel extends AndroidViewModel {
 
 
     }
+
+
     public void newNote(UserNote userNote) {
         JsonObject note = new JsonObject();
         note.addProperty("note_id",userNote.getNoteId());
         note.addProperty("note_cat",userNote.getNoteCat());
         note.addProperty("note_type",userNote.getNoteType());
         note.addProperty("user_id",userNote.getNoteId());
-
         note.addProperty("note_subject",userNote.getNoteSubject());
         note.addProperty("note_section",userNote.getNoteSection());
         note.addProperty("note_title",userNote.getNoteTitle());

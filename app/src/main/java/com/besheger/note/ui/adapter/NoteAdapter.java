@@ -8,27 +8,21 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
-import androidx.navigation.NavController;
-import androidx.navigation.NavHost;
-import androidx.navigation.NavOptions;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.FragmentNavigator;
-import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.RecyclerView;
 
+import androidx.recyclerview.widget.RecyclerView;
 import com.besheger.note.R;
 
-import com.besheger.note.model.UserNote;
+import com.besheger.note.data.repository.local.Note;
 import com.besheger.note.utils.NoteDetailUsers;
 
 import org.jetbrains.annotations.NotNull;
 import java.util.List;
-import jp.wasabeef.richeditor.RichEditor;
+
 
 public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder> {
-private List<UserNote> noteList;
-
-    public NoteAdapter(List<UserNote> noteList) {
+private List<Note> noteList;
+    public NoteAdapter(List<Note> noteList) {
         this.noteList = noteList;
     }
 
@@ -40,20 +34,25 @@ private List<UserNote> noteList;
     @Override
     public void onBindViewHolder(@NonNull @NotNull NoteAdapter.ViewHolder holder, int position) {
         holder.note=noteList.get(position);
-        holder.title.setHtml("<h2>"+noteList.get(position).getNoteTitle()+"</h2>");
+       // <0910060466>
+        holder.title.setText(noteList.get(position).getNoteTitle());
         try{
-            holder.detail.setText(holder.note.getNoteBody().replaceAll("\\<.*?\\>", "").substring(0,90)+"  .   .  .  . \n ======<More. . . . Click>=======");
+            holder.detail.setText(holder.note.getNoteBody().replaceAll("\\<.*?\\>", "").substring(0,90)+"  .   .  .  . \n");
 
         }catch (Exception e){
-            holder.detail.setText(holder.note.getNoteBody().replaceAll("\\<.*?\\>", "")+"  .   .  .  . \n ======<More. . . .Click >=======");
-
+            try {
+                holder.detail.setText(holder.note.getNoteBody().replaceAll("\\<.*?\\>", "") + "  .   .  .  . \n ");
+            }
+            catch  (Exception m){
+                holder.detail.setText("Content Is empty");
+            }
         }
 
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NoteDetailUsers.userDetail=holder.note;
-               Navigation.findNavController(v).navigate(R.id.note_detail,null,null,null);
+                Navigation.findNavController(v).navigate(R.id.note_detail,null,null,null);
 
             }
         });
@@ -66,8 +65,8 @@ private List<UserNote> noteList;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private UserNote note;
-        private  RichEditor title;
+        private Note note;
+        private  TextView title;
         private TextView detail;
         private Button button;
         private CardView cardView;
@@ -77,10 +76,10 @@ private List<UserNote> noteList;
             cardView=itemView.findViewById(R.id.note_card);
            // cardView.setBackgroundResource(R.drawable.bg);
             title=itemView.findViewById(R.id.title);
-            title.setInputEnabled(false);
+           // title.setInputEnabled(false);
             detail=itemView.findViewById(R.id.detail);
             //detail.setBackgroundColor(0x00ffffff);
-            title.setBackgroundColor(0x00ffffff);
+          //  title.setBackgroundColor(0x00ffffff);
            // detail.setInputEnabled(false);
 
            // button=itemView.findViewById(R.id.okb);

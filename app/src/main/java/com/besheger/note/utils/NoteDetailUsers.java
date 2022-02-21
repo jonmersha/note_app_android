@@ -1,8 +1,8 @@
 package com.besheger.note.utils;
 
-import com.besheger.note.model.UserNote;
+import com.besheger.note.data.repository.local.Note;
 
 public class NoteDetailUsers {
 
-    public static UserNote userDetail;
+    public static Note userDetail;
 }

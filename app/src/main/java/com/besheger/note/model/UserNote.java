@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-@Entity(tableName = "note")
+@Entity(tableName = "notes")
 public class UserNote {
     @PrimaryKey(autoGenerate = true)
     @SerializedName("note_id")

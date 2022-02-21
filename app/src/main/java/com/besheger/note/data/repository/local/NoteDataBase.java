@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {NoteModel.class,NoteCatModel.class},version = 1,exportSchema = false)
+@Database(entities = {Note.class,NoteCatModel.class},version = 1,exportSchema = false)
 public abstract class NoteDataBase extends RoomDatabase {
     public abstract NoteDAO noteDAO();
     public static volatile NoteDataBase INSTANCE;

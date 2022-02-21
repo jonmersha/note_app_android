@@ -16,12 +16,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.besheger.note.data.repository.local.Note;
 import com.besheger.note.data.view_model.NoteViewModel;
 import com.besheger.note.model.NoteResponse;
-import com.besheger.note.model.UserNote;
 import com.besheger.note.ui.new_note.NewNoteViewModel;
 import com.besheger.note.utils.NoteDetailUsers;
-import com.besheger.note.databinding.NewNoteFragmentBinding;
 import com.besheger.note.databinding.NoteDetailFragmentBinding;
 
 import jp.wasabeef.richeditor.RichEditor;
@@ -135,7 +134,7 @@ public class NoteDetail extends Fragment {
                    NoteViewModel noteViewModel = new ViewModelProvider
                            .AndroidViewModelFactory(getActivity().getApplication())
                            .create(NoteViewModel.class);
-                   UserNote userNote = NoteDetailUsers.userDetail;
+                   Note userNote = NoteDetailUsers.userDetail;
                    userNote.setNoteBody(mEditor.getHtml());
                    noteViewModel.updateNote(userNote);
                    noteViewModel.getNoteResponse().observe(getActivity(), new Observer<NoteResponse>() {

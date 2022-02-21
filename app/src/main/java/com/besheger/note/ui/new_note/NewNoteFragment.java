@@ -1,27 +1,36 @@
 package com.besheger.note.ui.new_note;
 
+import androidx.annotation.ColorInt;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.besheger.note.R;
+import com.besheger.note.data.repository.local.Note;
 import com.besheger.note.data.view_model.NoteViewModel;
+import com.besheger.note.data.view_model.NoteViewModelLocal;
 import com.besheger.note.databinding.NewNoteFragmentBinding;
 import com.besheger.note.model.NoteResponse;
 import com.besheger.note.model.UserNote;
 import com.besheger.note.utils.NoteDetailUsers;
+
 import com.thebluealliance.spectrum.SpectrumDialog;
 
 import jp.wasabeef.richeditor.RichEditor;
@@ -29,12 +38,17 @@ import top.defaults.colorpicker.ColorPickerPopup;
 
 public class NewNoteFragment extends Fragment {
 
+    private static final int PICK_IMAGE = 100;
+    Uri imageUri;
+
     private NewNoteViewModel mViewModel;
     private RichEditor mEditor;
     private TextView mPreview;
     private View mColorPreview;
     private int mDefaultColor;
     private NewNoteFragmentBinding binding;
+    private ImageButton bold;
+    private boolean isbold=false;
     public static NewNoteFragment newInstance() {
         return new NewNoteFragment();
     }
@@ -44,6 +58,9 @@ public class NewNoteFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding= NewNoteFragmentBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        bold=root.findViewById(R.id.action_bold);
+
         mEditor = (RichEditor) root.findViewById(R.id.editor);
         mEditor.setEditorHeight(200);
         mEditor.setEditorFontSize(22);
@@ -52,6 +69,7 @@ public class NewNoteFragment extends Fragment {
         mEditor.setPadding(10, 10, 10, 10);
         mEditor.setPlaceholder("Insert text here...");
         try {
+
 
             root.findViewById(R.id.action_undo).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,13 +100,19 @@ public class NewNoteFragment extends Fragment {
             });
 
 
-//            root.findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    mEditor.setBold();
-//                }
-//            });
-//
+            root.findViewById(R.id.action_bold).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mEditor.setBold();
+                    if(isbold)
+                        bold.setBackgroundColor(Color.BLACK);
+                    else
+                    bold.setBackgroundColor(Color.BLUE);
+                    isbold=!isbold;
+                    
+                }
+            });
+
 //
 //            root.findViewById(R.id.action_italic).setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -155,12 +179,19 @@ public class NewNoteFragment extends Fragment {
 //                    mEditor.setHeading(5);
 //                }
 //            });
-//            root.findViewById(R.id.action_heading6).setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    mEditor.setHeading(6);
-//                }
-//            });
+
+
+            root.findViewById(R.id.action_insert_image).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI);
+
+                    startActivityForResult(gallery, PICK_IMAGE);
+
+                }
+            });
+
 
             root.findViewById(R.id.action_txt_color).setOnClickListener(new View.OnClickListener() {
 
@@ -195,32 +226,19 @@ public class NewNoteFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     try {
-                        NoteViewModel noteViewModel = new ViewModelProvider
+                        NoteViewModelLocal noteViewModel = new ViewModelProvider
                                 .AndroidViewModelFactory(getActivity().getApplication())
-                                .create(NoteViewModel.class);
+                                .create(NoteViewModelLocal.class);
 
-                        UserNote userNote = new UserNote();
-                        userNote.setNoteId(1);
-                        userNote.setNoteCat(1);
-                        userNote.setNoteType(1);
-                        userNote.setUserId(1);
-                        userNote.setNoteSubject("Maths");
+                        Note note=new Note();
+                        note.setCreatorID(1);
+                        note.setNoteCategory("My note Cat");
+                        note.setNoteBody(mEditor.getHtml());
+                        note.setNoteTitle("MyNote Title");
+                        note.setDateCreated("2020/12/21");
+                        note.setCreatorID(1);
 
-                        userNote.setNoteTitle("From Mobile");
-                        userNote.setNoteSection("Bulding LayOut");
-                        userNote.setNoteBody(mEditor.getHtml());
-                        userNote.setDateCreated("2020/12/21");
-
-
-                        noteViewModel.newNote(userNote);
-
-                        noteViewModel.getNoteResponse().observe(getActivity(), new Observer<NoteResponse>() {
-                            @Override
-                            public void onChanged(NoteResponse noteResponse) {
-                                Toast.makeText(getActivity(), "Response" + noteResponse.getMessage(), Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
+                        noteViewModel.registerNote(note);
 
                     } catch (Exception e) {
                         Toast.makeText(root.getContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
@@ -236,10 +254,8 @@ public class NewNoteFragment extends Fragment {
 
         }
 
+
         return root;
     }
-
-
-
 
 }
